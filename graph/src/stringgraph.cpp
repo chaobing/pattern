@@ -22,6 +22,76 @@ const StringEdge* StringGraph::addStringEdge(StringNode* src, int src_output, St
 	return edge;
 }
 
+bool StringGraph::connected()
+{
+  size_t node = 0;
+  map<const StringNode*, bool> visited;
+  queue<StringNode*> Q;
+  auto randNode = *(nodes().begin());
+  Q.push(randNode);
+  visited[randNode] = true;
+  while(!Q.empty()){
+	node++;
+	auto l = Q.front();
+	Q.pop();
+	for(auto pre : l->predecessors()){
+	  if(visited.find(pre) == visited.end()){
+		visited[pre] = true;
+		Q.push(pre);
+	  }
+	}
+	for(auto su : l->successors()){
+	  if(visited.find(su) == visited.end()){
+		visited[su] = true;
+		Q.push(su);
+	  }
+	}
+  }
+  return node == this->num_nodes();
+}
+
+StringNode* StringGraph::entry() const
+{
+  StringNode *ret = nullptr;
+  for(auto &n : nodes()){
+	if(n->val() == "entry"){
+		ret = n;
+		break;
+	}
+  }
+  return ret;
+}
+
+StringNode* StringGraph::exit() const
+{
+  StringNode *ret = nullptr;
+  for(auto &n : nodes()){
+	if(n->val() == "exit"){
+		ret = n;
+		break;
+	}
+  }
+  return ret;
+}
+
+void StringGraph::addEntryExit()
+{
+  assert(connected());
+  int entry_idx=0, exit_idx=0;
+  vector<StringNode*> nodes(Graph::nodes().begin(), Graph::nodes().end());
+  auto en = CreateNode("entry");
+  auto ex = CreateNode("exit");
+  for(auto &n : nodes){
+	assert(n->val() != "entry" || n->val() != "exit");
+	if(n->in_degree() == 0){
+		this->addStringEdge(en, entry_idx++, n, 0);
+	}
+	if(n->out_degree() == 0){
+		this->addStringEdge(n, 0, ex, exit_idx++);
+	}
+  }
+}
+
 void StringGraph::dump(string save_name)
 {
   std::ofstream f;

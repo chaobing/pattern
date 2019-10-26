@@ -132,8 +132,8 @@ class Graph{
 		assert(del->in_degree() == 0 && del->out_degree() == 0);
 		nodes_.erase(del);
 	}
-	size_t num_edges(){ return edges_.size(); }
-	size_t num_nodes(){ return nodes_.size(); }
+	size_t num_edges() const{ return edges_.size(); }
+	size_t num_nodes() const{ return nodes_.size(); }
 		
 	iterator_range<NodeIter<NodeType*>> nodes() const{
 		return make_range(NodeIter<NodeType*>(nodes_.begin()),

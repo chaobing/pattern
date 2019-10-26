@@ -3,7 +3,10 @@
 #include <memory>
 #include <vector>
 #include <set>
+#include <map>
 #include <list>
+#include <queue>
+#include <stack>
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -15,7 +18,10 @@ using std::shared_ptr;
 using std::make_shared;
 using std::vector;
 using std::set;
+using std::map;
 using std::list;
+using std::queue;
+using std::stack;
 using std::string;
 using std::cout;
 using std::endl;

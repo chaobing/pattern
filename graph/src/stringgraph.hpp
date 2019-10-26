@@ -44,6 +44,11 @@ class StringGraph : public Graph<StringNode, StringEdge>{
 	StringNode* CreateNode(string name);
 	const StringEdge* addStringEdge(StringNode* src, int src_output,
 								  StringNode* dst, int dst_input);
+	bool connected();
+	StringNode* entry() const; 
+	StringNode* exit() const;
+	void addEntryExit();
+
 	void dump(string save_name);
 };
 
