@@ -13,7 +13,7 @@ int main(int argc, char*argv[]){
 		*(data_ptr + i) = i-4;
 	}
 	int8_t* tmp = t->data<int8_t>();
-	for(auto i=0; i<t->get_element_num(); i++){
+	for(auto i=0U; i<t->get_element_num(); i++){
 		cout<<+tmp[i]<<" ";
 	}
 

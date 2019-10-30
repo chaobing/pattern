@@ -4,18 +4,17 @@
 
 class TensorImp : public Tensor{
 	 const string get_name() const override;
-	 const int get_dim_size(int idx) const override;
-	 const int get_dim_num() const override;
 	 const vector<int> get_dims() const override;
-	 const int get_element_num() const override;
-	 bool is_same_size(const Tensor*) const override;
 	 const DataType get_data_type() const override;
+	 bool has_data() const override;
+	 
+	 const size_t get_element_num() const override;
+	 bool is_same_size(const Tensor*) const override;
 	 void set_data_type(const DataType &) override;
 	 const int get_data_size() const override;
 	
 	 void malloc() override;
 	 void free() override;
-	 bool has_data() const override;
 	 void* data() const override;
 	
 	 void copy_from(const Tensor*) override;

@@ -1,27 +1,27 @@
 #include "TensorImp.hpp"
+
 TensorImp::TensorImp(const string &name, 
 			const vector<int> &dims, DataType data_type)
 	:name_(name), dims_(dims), data_type_(data_type){}
 
 const string TensorImp::get_name() const { return name_; }
-const int TensorImp::get_dim_size(int idx) const { 
-	return dims_[idx]; 
-}
-const int TensorImp::get_dim_num() const{
-	return 0;
-}
+
 const vector<int> TensorImp::get_dims() const { return dims_; }
-const int TensorImp::get_element_num() const {
+
+const size_t TensorImp::get_element_num() const {
   size_t size = 1;
   for(auto d : dims_){
 	size *= d;
   }
   return size;
 }
+
 bool TensorImp::is_same_size(const Tensor* tensor) const{
 	return this->get_data_size() ==  tensor->get_data_size();
 }
+
 const DataType TensorImp::get_data_type() const{ return data_type_; }
+
 void TensorImp::set_data_type(const DataType & dtype){ data_type_ = dtype; }
 
 static size_t size_of(DataType dtype){

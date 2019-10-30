@@ -18,18 +18,17 @@ class Tensor{
   
   public:
 	virtual const string get_name() const = 0;
-	virtual const int get_dim_size(int idx) const = 0;
-	virtual const int get_dim_num() const = 0;
 	virtual const vector<int> get_dims() const = 0;
-	virtual const int get_element_num() const = 0;
-	virtual bool is_same_size(const Tensor*) const = 0;
 	virtual const DataType get_data_type() const = 0;
+	virtual bool has_data() const = 0;
+	
+	virtual const size_t get_element_num() const = 0;
+	virtual bool is_same_size(const Tensor*) const = 0;
 	virtual void set_data_type(const DataType &) = 0;
 	virtual const int get_data_size() const = 0;
 	
 	virtual void malloc() = 0;
 	virtual void free() = 0;
-	virtual bool has_data() const = 0;
 	virtual void* data() const = 0;
 
 	template<typename T>
